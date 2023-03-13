@@ -6,8 +6,8 @@ const prisma = new PrismaClient({ log: ["query"] });
 async function bootstrap() {
   const fastify = Fastify({ logger: true });
 
-  fastify.get("/polls/count", () => {
-    const count = prisma.pool.count();
+  fastify.get("/polls/count", async() => {
+    const count = await prisma.poll.count();
     return { count };
   });
 
