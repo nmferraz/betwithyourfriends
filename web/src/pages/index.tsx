@@ -1,5 +1,5 @@
-export default function Home() {
-  return <h1>Hello World</h1>;
+export default function Home(props) {
+  return <h1>{props.count} Poll</h1>;
 }
 
 export const getServerSideProps = async () => {
@@ -8,6 +8,6 @@ export const getServerSideProps = async () => {
   console.log(data);
 
   return {
-    props: {},
+    props: { count: data.count },
   };
 };
