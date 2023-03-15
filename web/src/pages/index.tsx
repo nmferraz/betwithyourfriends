@@ -4,6 +4,7 @@ import logoImg from "../assets/logo_yellow.svg";
 import usersAvatarExampleImg from "../assets/avatares.png";
 import iconCheckImg from "../assets/icon-check.svg";
 import { api } from "../lib/axios";
+import { FormEvent, useState } from "react";
 interface HomeProps {
   pollCount: number;
   guessesCount: number;
@@ -11,6 +12,20 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
+  const [pollTitle, setPollTitle] = useState("");
+
+  async function createPoll(event: FormEvent) {
+    event.preventDefault();
+    try {
+      const response = await api.post("/polls", { title: pollTitle });
+      const { code } = response.data;
+      await navigator.clipboard.writeText(code);
+      alert("Poll created! Code copied to clipboard");
+      setPollTitle("");
+    } catch (err) {
+      alert("Error creating poll");
+    }
+  }
   return (
     <div className="max-w-[1124px] h-screen mx-auto grid grid-cols-2 gap-28 items-center">
       <main>
@@ -28,12 +43,14 @@ export default function Home(props: HomeProps) {
           </strong>
         </div>
 
-        <form className="mt-10 flex gap-2">
+        <form onSubmit={createPoll} className="mt-10 flex gap-2">
           <input
-            className="text-sm flex-1 px-6 py-4 rounded bg-[#282824] border border-[#323238]"
+            className="text-sm flex-1 px-6 py-4 rounded bg-[#282824] border border-[#323238] text-[#E1E1E6]"
             type="text"
             required
             placeholder="Whats the name of your poll game?"
+            onChange={(event) => setPollTitle(event.target.value)}
+            value={pollTitle}
           />
           <button
             className="bg-[#F7DD43] px-6 py-4 rounded font-[#09090A] font-bold text-sm uppercase hover:bg-[#E5CD3D]"
