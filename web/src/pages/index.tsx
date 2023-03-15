@@ -1,12 +1,14 @@
-interface HomeProps {
-  count: number;
-}
-
 import Image from "next/image";
 import appPreviewImg from "../assets/preview.png";
 import logoImg from "../assets/logo_yellow.svg";
 import usersAvatarExampleImg from "../assets/avatares.png";
 import iconCheckImg from "../assets/icon-check.svg";
+import { api } from "../lib/axios";
+interface HomeProps {
+  pollCount: number;
+  guessesCount: number;
+  userCount: number;
+}
 
 export default function Home(props: HomeProps) {
   return (
@@ -21,7 +23,8 @@ export default function Home(props: HomeProps) {
         <div className="mt-10 flex items-center gap-2">
           <Image src={usersAvatarExampleImg} alt="" quality={100} />
           <strong className="text-[#e1e1e6] text-xl">
-            <span className="text-[#129E57]">+2000</span> are already using
+            <span className="text-[#129E57]">+{props.userCount}</span> are
+            already using
           </strong>
         </div>
 
@@ -49,7 +52,7 @@ export default function Home(props: HomeProps) {
           <div className="flex items-center gap-6">
             <Image src={iconCheckImg} alt="" />
             <div className="flex flex-col">
-              <span className="font-bold text-2xl">+600</span>
+              <span className="font-bold text-2xl">+{props.pollCount}</span>
               <p>Polls created</p>
             </div>
           </div>
@@ -57,7 +60,7 @@ export default function Home(props: HomeProps) {
           <div className="flex items-center gap-6">
             <Image src={iconCheckImg} alt="" />
             <div className="flex flex-col">
-              <span className="font-bold text-2xl">+600</span>
+              <span className="font-bold text-2xl">+{props.guessesCount}</span>
               <p>predictions sent</p>
             </div>
           </div>
@@ -74,11 +77,18 @@ export default function Home(props: HomeProps) {
 }
 
 export const getServerSideProps = async () => {
-  const response = await fetch("http://localhost:3333/polls/count");
-  const data = await response.json();
-  console.log(data);
+  const [pollCountResponse, guessesCountResponse, usersCountResponse] =
+    await Promise.all([
+      api.get("polls/count"),
+      api.get("guesses/count"),
+      api.get("users/count"),
+    ]);
 
   return {
-    props: { count: data.count },
+    props: {
+      pollCount: pollCountResponse.data.count,
+      guessesCount: guessesCountResponse.data.count,
+      userCount: usersCountResponse.data.count,
+    },
   };
 };
