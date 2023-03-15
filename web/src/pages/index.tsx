@@ -45,7 +45,7 @@ export default function Home(props: HomeProps) {
           use to invite other people 🚀
         </p>
 
-        <div className="mt-10 pt-10 border-t border-[#323238] flex justify-between text-[#E1E1E6]">
+        <div className="mt-10 pt-10 border-t border-[#323238] items-center flex justify-between text-[#E1E1E6]">
           <div className="flex items-center gap-6">
             <Image src={iconCheckImg} alt="" />
             <div className="flex flex-col">
@@ -53,7 +53,7 @@ export default function Home(props: HomeProps) {
               <p>Polls created</p>
             </div>
           </div>
-          <div className="w-px h-10 bg-[#323238]" />
+          <div className="w-px h-14 bg-[#323238]" />
           <div className="flex items-center gap-6">
             <Image src={iconCheckImg} alt="" />
             <div className="flex flex-col">

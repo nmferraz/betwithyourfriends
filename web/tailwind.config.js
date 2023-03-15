@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         sans: "Roboto, sans-serif",
       },
+      backgroundImage: {
+        app: 'url(/app-bg.png)'
+      },
     },
   },
   plugins: [],
