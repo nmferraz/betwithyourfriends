@@ -10,45 +10,60 @@ import iconCheckImg from "../assets/icon-check.svg";
 
 export default function Home(props: HomeProps) {
   return (
-    <div>
+    <div className="max-w-[1124px] h-screen mx-auto grid grid-cols-2 gap-28 items-center">
       <main>
         <Image src={logoImg} alt="BetWithYourFriends Logo" />
-        <h1>Create your own football poll and share it with your friends!</h1>
-        <div>
+
+        <h1 className="mt-14 text-white text-5xl font-bold leading-tight">
+          Create your own football poll and share it with your friends!
+        </h1>
+
+        <div className="mt-10 flex items-center gap-2">
           <Image src={usersAvatarExampleImg} alt="" quality={100} />
-          <strong>
-            <span>+2000</span>are already using
+          <strong className="text-[#e1e1e6] text-xl">
+            <span className="text-[#129E57]">+2000</span> are already using
           </strong>
         </div>
-        <form>
+
+        <form className="mt-10 flex gap-2">
           <input
+            className="text-sm flex-1 px-6 py-4 rounded bg-[#282824] border border-[#323238]"
             type="text"
             required
             placeholder="Whats the name of your poll game?"
           />
-          <button type="submit">Create my poll</button>
+          <button
+            className="bg-[#F7DD43] px-6 py-4 rounded font-[#09090A] font-bold text-sm uppercase hover:bg-[#E5CD3D]"
+            type="submit"
+          >
+            Create my poll
+          </button>
         </form>
-        <p>
+
+        <p className="text-[#8d8d99] mt-4 text-sm leading-relaxed">
           After creating your poll, you will receive a unique code that you can
           use to invite other people 🚀
         </p>
-        <div>
-          <div>
+
+        <div className="mt-10 pt-10 border-t border-[#323238] flex justify-between text-[#E1E1E6]">
+          <div className="flex items-center gap-6">
             <Image src={iconCheckImg} alt="" />
-            <div>
-              <span>+600</span>
+            <div className="flex flex-col">
+              <span className="font-bold text-2xl">+600</span>
               <p>Polls created</p>
             </div>
           </div>
-          <div>
+          <div className="w-px h-10 bg-[#323238]" />
+          <div className="flex items-center gap-6">
             <Image src={iconCheckImg} alt="" />
-            <div>
-              <span>+600</span>
+            <div className="flex flex-col">
+              <span className="font-bold text-2xl">+600</span>
               <p>predictions sent</p>
             </div>
           </div>
         </div>
       </main>
+
       <Image
         src={appPreviewImg}
         alt="Two phones showing a preview of the mobile app"
