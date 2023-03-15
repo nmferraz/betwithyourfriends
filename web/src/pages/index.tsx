@@ -2,8 +2,19 @@ interface HomeProps {
   count: number;
 }
 
+import Image from "next/image";
+import appPreviewImg from "../assets/preview.png";
+
 export default function Home(props: HomeProps) {
-  return <h1>{props.count} Poll</h1>;
+  return (
+    <div>
+      <main></main>
+      <Image
+        src={appPreviewImg}
+        alt="Two phones showing a preview of the mobile app"
+      />
+    </div>
+  );
 }
 
 export const getServerSideProps = async () => {
