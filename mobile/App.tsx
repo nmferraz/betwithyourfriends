@@ -6,7 +6,7 @@ import {
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
 import { Loading } from "./src/components/Loading";
-import { Find } from "./src/screens/Find";
+import { Polls } from "./src/screens/Polls";
 import { THEME } from "./src/styles/theme";
 import { AuthContextProvider } from "./src/context/AuthContext";
 
@@ -25,7 +25,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        {fontsLoaded ? <Find /> : <Loading />}
+        {fontsLoaded ? <Polls /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   );
