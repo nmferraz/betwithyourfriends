@@ -1,7 +1,5 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import { z } from "zod";
-import ShortUniqueId from "short-unique-id";
 import { pollRoutes } from "./routes/poll";
 
 async function bootstrap() {
