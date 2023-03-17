@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import { z } from "zod";
 import ShortUniqueId from "short-unique-id";
+import { pollRoutes } from "./routes/poll";
 
 async function bootstrap() {
   const fastify = Fastify({ logger: true });
@@ -10,28 +11,11 @@ async function bootstrap() {
     origin: true,
   });
 
+  fastify.register(pollRoutes);
+
   
 
-  fastify.post("/polls", async (request, reply) => {
-    const createPollBody = z.object({
-      title: z.string(),
-    });
 
-    const { title } = createPollBody.parse(request.body);
-
-    const generate = new ShortUniqueId({ length: 6 });
-
-    const code = String(generate()).toUpperCase();
-
-    await prisma.poll.create({
-      data: {
-        title,
-        code,
-      },
-    });
-
-    return reply.status(201).send({ code });
-  });
 
   fastify.get("/users/count", async () => {
     const count = await prisma.user.count();
