@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Row, Text, Pressable } from "native-base";
 
-export function EmptyPoolList() {
+export function EmptyPollList() {
 const { navigate } = useNavigation();
 
   return (
