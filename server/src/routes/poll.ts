@@ -47,10 +47,10 @@ export async function pollRoutes(fastify: FastifyInstance) {
     }
 
     return reply.status(201).send({ code });
-  });
+  }); 
 
   fastify.post(
-    "/polls/:id/join",
+    "/polls/join",
     { onRequest: [authenticate] },
     async (request, reply) => {
       const joinPollBody = z.object({
