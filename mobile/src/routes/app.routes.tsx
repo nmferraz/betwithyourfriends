@@ -2,7 +2,7 @@ import { Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { PlusCircle, SoccerBall } from "phosphor-react-native";
 import { useTheme } from "native-base";
-
+import { Details } from "../screens/Details";
 import { New } from "../screens/New";
 import { Polls } from "../screens/Polls";
 import { Find } from "../screens/Find";
@@ -53,6 +53,12 @@ export function AppRoutes() {
       <Screen
         name="find"
         component={Find}
+        options={{ tabBarButton: () => null }}
+      />
+
+      <Screen
+        name="details"
+        component={Details}
         options={{ tabBarButton: () => null }}
       />
     </Navigator>
