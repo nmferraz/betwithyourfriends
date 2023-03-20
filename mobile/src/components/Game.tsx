@@ -2,7 +2,7 @@ import { Button, HStack, Text, useTheme, VStack } from "native-base";
 import { X, Check } from "phosphor-react-native";
 import { getName } from "country-list";
 import dayjs from "dayjs";
-import ptPT from "dayjs/locale/pt-pt";
+import ptPT from "dayjs/locale/pt";
 import { Team } from "./Team";
 
 interface GuessProps {
