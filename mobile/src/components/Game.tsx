@@ -1,7 +1,8 @@
 import { Button, HStack, Text, useTheme, VStack } from "native-base";
 import { X, Check } from "phosphor-react-native";
 import { getName } from "country-list";
-
+import dayjs from "dayjs";
+import ptPT from "dayjs/locale/pt-pt";
 import { Team } from "./Team";
 
 interface GuessProps {
@@ -15,6 +16,7 @@ interface GuessProps {
 
 export interface GameProps {
   id: string;
+  date: Date;
   firstTeamCountryCode: string;
   secondTeamCountryCode: string;
   guess: null | GuessProps;
@@ -35,6 +37,8 @@ export function Game({
 }: Props) {
   const { colors, sizes } = useTheme();
 
+  const when = dayjs(data.date).locale(ptPT).format("DD [of] MMMM [of] YYYY");
+
   return (
     <VStack
       w="full"
@@ -52,7 +56,7 @@ export function Game({
       </Text>
 
       <Text color="gray.200" fontSize="xs">
-        November 22, 2023 at 4:00 pm
+        {when}
       </Text>
 
       <HStack
